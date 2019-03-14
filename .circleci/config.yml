@@ -1,0 +1,42 @@
+
+CODE CLIMATE OPTIONS
+Show issues
+Show test coverage
+ Highlight covered lines
+
+version: 2
+jobs:
+  build:
+    working_directory: ~/weconnect-sinatra
+    docker:
+      - image: circleci/ruby:2.4.1
+        environment:
+          POSTGRES_DB: test_db
+          POSTGRES_USER: postgres
+          RACK_ENV: test
+    steps:
+      - checkout
+
+      # Restore bundle cache
+      - type: cache-restore
+        key: weconnect-sinatra-{{ checksum "Gemfile.lock" }}
+
+      # Bundle install dependencies
+      - run: bundle install --path vendor/bundle
+
+      # Store bundle cache
+      - type: cache-save
+        key: wecoonect-sinatra-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+
+      - run: |
+            bundle exec rspec --profile 10 \
+                              --format RspecJunitFormatter \
+                              --out test_results/rspec.xml \
+                              --format progress \
+                              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
+      # Save artifacts
+      - type: store_test_results
+        path: test-results

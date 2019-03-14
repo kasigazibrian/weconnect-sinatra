@@ -19,6 +19,29 @@ RSpec.describe BusinessesController do
 
         expect(last_response).to be_ok
       end
+
+      it 'should access the business profile template' do
+        get "/businesses/#{business.id}/profile", {},
+            'rack.session' => { user_id: user.id }
+
+        expect(last_response).to be_ok
+      end
+
+      it 'should access the edit business template' do
+        get "/businesses/#{business.id}/edit", {},
+            'rack.session' => { user_id: user.id }
+
+        expect(last_response).to be_ok
+      end
+    end
+
+    context 'business is non existent' do
+      it 'should halt and return 404' do
+        get '/businesses/12345/profile', {},
+            'rack.session' => { user_id: user.id }
+
+        expect(last_response).to be_not_found
+      end
     end
 
     context 'unauthenticated user' do

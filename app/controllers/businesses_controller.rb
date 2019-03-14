@@ -57,6 +57,7 @@ class BusinessesController < ApplicationController
       flash[:success] = ['Business review added successfully']
       redirect "/businesses/#{params[:business_id]}/profile"
     else
+      status 400
       flash[:danger] = review.errors.full_messages
       erb :'businesses/register'
     end
