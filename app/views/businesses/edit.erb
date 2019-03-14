@@ -1,0 +1,48 @@
+<div class="business-container text-light">
+  <div class="container">
+    <div class="d-flex justify-content-center">
+      <div class="col-md-8">
+        <h3 class="business-heading">Business Registration Form</h3>
+        <%= erb :'partials/_messages' %>
+        <%#= flash_toastr %>
+        <form id="edit-business-form" method="put" action="/businesses/<%= @business.id %>/edit">
+          <div class="form-group">
+            <label for="business_name">Business Name</label><br>
+            <input type="text" value="<%= @business.business_name %>" name="business_name" id="business_name" class="form-control business-inputs" />
+          </div>
+          <div class="form-group">
+            <label for="business_email">Business Email</label><br>
+            <input value="<%= @business.business_email %>" type="email" id="business_email" name="business_email" class="form-control business-inputs" />
+          </div>
+          <div class="form-group">
+            <label for="business_location">Business Location</label><br>
+            <input value="<%= @business.business_location %>" type="text" id="business_location" name="business_location" class="form-control business-inputs" />
+          </div>
+          <div class="form-group">
+            <label for="business_category"> Business Category </label><br>
+            <select value="<%= @business.category.id %>" id="business_category" name="category_id" class="form-control business-inputs">
+              <% @categories.each do |category| %>
+                <% if @business.category.name == category.name %>
+                <option selected="selected" value="<%= category.id %>"> <%= category.name %></option>
+                  <% else %>
+                  <option value="<%= category.id %>"> <%= category.name %></option>
+                  <% end %>
+              <% end %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="contact_number">Contact Number</label><br>
+            <input value="<%= @business.contact_number %>" type="text" id="contact_number" name="contact_number" class="form-control business-inputs" />
+          </div>
+          <div class="form-group">
+            <label for="business_description"> Business Description </label><br>
+            <textarea id="business_description" name="business_description" class="form-control business-inputs"><%= @business.business_description %></textarea>
+          </div>
+          <div class="form-group">
+            <button data-business-id="<%= @business.id %>" id="edit_business" class="form-control business-inputs btn btn-info" type="submit"> Edit Business</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

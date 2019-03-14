@@ -1,0 +1,65 @@
+<div class="container"><br>
+  <div class="row">
+    <div class="col-6 ">
+      <%= erb :'partials/_messages'  %>
+      <%#= flash_toastr %>
+      <h1> User Profile </h1>
+      <form  method="post" enctype="multipart/form-data" action="/users/<%= @current_user.id %>/upload_photo">
+      <%#="/users/#{@current_user.id}/profile/upload_photo", method: :put, multipart: true) do %>
+        <div class="row">
+          <div class="col-6">
+            <%# if current_user.avatar.attached?%>
+            <% if false %>
+             <img src="current_user.avatar" class="avatar img-circle img-thumbnail" />
+            <% else %>
+              <img src="/images/profile_avatar.png" class="avatar img-circle img-thumbnail"/>
+            <% end %>
+          </div>
+          <div class="col-6">
+            <label for="profile_photo">Change profile image</label>
+            <input type="file" name="profile_photo" id="profile_photo" accept="image/png,image/gif,image/jpeg" class="btn btn-info btn-sm upload-image-button"/>
+            <button type="submit" class="btn btn-info" id="upload-image-btn" ><i class="fas fa-upload"></i> </button>
+          </div>
+        </div><br>
+      </form>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>First Name: </th>
+          <td><%= @current_user.first_name.capitalize %></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row">Last Name: </th>
+          <td><%= @current_user.last_name.capitalize %></td>
+        </tr>
+        <tr>
+          <th scope="row">Username: </th>
+          <td><%= @current_user.username %></td>
+        </tr>
+        <tr>
+          <th scope="row">Email: </th>
+          <td><%= @current_user.email %></td>
+        </tr>
+        <tr>
+          <th scope="row">Gender: </th>
+          <td><%= @current_user.gender %></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-6 bg-info">
+      <div class="profile-buttons">
+        <a href="users/<%= @current_user.id %>/change_password" class="btn btn-lg btn-secondary btn-block">Change Password</a>
+        <a class="btn btn-lg btn-secondary btn-block" href="/users/register_business">Register Business</a>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <h1 id="registered_businesses">Your Registered Businesses</h1>
+  <hr>
+  <div class="row">
+    <%= erb :'partials/_business_cards' %>
+  </div>
+</div>

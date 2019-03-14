@@ -1,0 +1,106 @@
+i {
+    color: #666666;
+}
+
+.search-bar {
+    position: absolute;
+    top: 30%;
+    margin-top: -50px;
+    width: 100%;
+}
+
+.business-container{
+    background-color: #666666;
+    padding-bottom: 80px;
+}
+.business-card {
+    margin-top: 1.8em;
+}
+
+.business-card:hover {
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1);
+}
+
+.business-heading{
+    margin: 1rem 0rem 1rem 0rem;
+}
+
+.business-inputs {
+    border-radius: 15px;
+    margin-top: 10px;
+}
+.business-name-input {
+    margin: 8px 60px 0 0;
+    width: 89%;
+    height: 75%;
+    border-radius: 5px;
+}
+
+.business-search-label{
+    font-size: 20px;
+    color: white !important;
+    margin-top: 12px;
+    width: 80px;
+    margin-right: 5px;
+}
+
+.card-min-height{
+    min-height: 100%;
+}
+
+.businesses-background{
+    background-image: url("../images/android.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+}
+
+.we-connect-logo {
+    background-image: url("../images/BIGLOGO.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 18%;
+}
+.category-input{
+    margin-top: 8px;
+}
+
+.location-input {
+    margin-top: 8px;
+    margin-left: 10px;
+}
+
+.search-results{
+    background: #6E6E6E;
+    border: 1px solid #ababab;
+    border-top: none;
+}
+
+.business-link{
+    display: block;
+    text-decoration: none !important;
+    color: white;
+    font-size: 20px;
+
+}
+.business-link:hover{
+    color: #DADADA;
+
+}
+
+.review-btn{
+    margin-top: 10px;
+}
+.profile-heading{
+    font-size: 40px;
+}
+.business-card-text{
+    height: 3rem;
+}
+
+.message-container{
+    padding-top: 20px;
+}

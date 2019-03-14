@@ -1,0 +1,55 @@
+<div class="signup-background">
+  <div class="d-flex justify-content-center">
+    <div class="sign-up-wrapping">
+      <div class="col-md-10">
+        <div class="container text-light">
+          <h2 class="sign-up-heading">Please Sign up</h2>
+          <%= erb :'partials/_messages' %>
+          <%#= flash_toastr %>
+          <form method="post" action="/users/sign_up">
+            <div class="field">
+              <label for="username"> Username</label><br />
+              <input type="text" id="username" name="username" class="form-control form-input-border" required/>
+            </div><br />
+
+            <div class="field">
+              <label for="email">Email</label><br />
+              <input type="text" id="email" name="email" class="form-control form-input-border" required/>
+            </div><br />
+
+            <div class="field">
+              <label for="first_name">First Name </label><br />
+              <input type="text" id="first_name" name="first_name" class="form-control form-input-border" required/>
+            </div><br />
+
+            <div class="field">
+              <label for="last_name">Last Name </label><br />
+              <input type="text" id="last_name" name="last_name" class="form-control form-input-border" required/>
+            </div><br />
+
+            <div class="field">
+              <label for="male"> Gender</label><br />
+              <input type="radio" id="male" name="gender" value="male"> Male<br>
+              <input type="radio" id="female" name="gender" value="female"> Female<br>
+            </div><br />
+
+            <div class="field">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" class="form-control form-input-border" >
+            </div><br />
+
+            <div class="field">
+              <label for="password_confirmation">Confirm Password </label><br />
+              <input type="password" id="password_confirmation" name="password_confirmation" class="form-control form-input-border" />
+            </div><br/>
+
+            <div class="actions">
+              <button type="submit" class="btn btn-info form-input-border">Sign Up</button>
+            </div><br />
+          </form>
+           Already have an account? Click<a href="/users/sign_in"> here</a> to login</p><br />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

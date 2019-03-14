@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+  <img src="/images/logo.png"  height="45" width="42" />
+  <a href="/" class="navbar-brand">WeConnect!</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/businesses"><i class="fas fa-business-time"></i> Businesses</a>
+      </li>
+      <li class="nav-item">
+        <a href="/search" class="nav-link"> <i class="fas fa-search"></i> Search</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user"></i>
+          Account
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <% if authenticated? %>
+            <div class="dropdown-item logout"><i class="fas fa-sign-out-alt"></i>
+              <a href="/users/logout" id="logout" class="logout">Log out</a>
+            </div>
+            <a class="dropdown-item" href="/users/<%= @current_user.id %>/user_profile"><i class="fas fa-user-md"></i> User Profile</a>
+            <div class="dropdown-item logout"><i class="fas fa-business-time"></i>
+              <a href="/users/register_business" class="logout">Register Business</a>
+            </div>
+          <% else %>
+            <a class="dropdown-item" href="/users/sign_in"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a class="dropdown-item" href="/users/sign_up"><i class="fas fa-user-plus"></i> Sign up</a>
+          <% end %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

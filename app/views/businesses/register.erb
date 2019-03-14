@@ -1,0 +1,44 @@
+<div class="business-container text-light">
+  <div class="container">
+    <div class="d-flex justify-content-center">
+      <div class="col-md-8">
+        <h3 class="business-heading">Business Registration Form</h3>
+        <%= erb :'partials/_messages' %>
+        <%#= flash_toastr %>
+        <form method="post" action="/users/register_business">
+          <div class="form-group">
+            <label for="business_name">Business Name</label><br>
+            <input type="text" name="business_name" id="business_name" class="form-control business-inputs" />
+          </div>
+          <div class="form-group">
+            <label for="business_email">Business Email</label><br>
+            <input type="email" id="business_email" name="business_email" class="form-control business-inputs" />
+          </div>
+          <div class="form-group">
+            <label for="business_location">Business Location</label><br>
+            <input type="text" id="business_location" name="business_location" class="form-control business-inputs" />
+          </div>
+          <div class="form-group">
+            <label for="business_category"> Business Category </label><br>
+            <select id="business_category" name="category_id" class="form-control business-inputs">
+              <% @categories.each do |category| %>
+                <option value="<%= category.id %>"> <%= category.name %></option>
+              <% end %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="contact_number">Contact Number</label><br>
+            <input type="text" id="contact_number" name="contact_number" class="form-control business-inputs" />
+          </div>
+          <div class="form-group">
+            <label for="business_description"> Business Description </label><br>
+            <textarea type="text" id="business_description" name="business_description" class="form-control business-inputs"></textarea>
+          </div>
+          <div class="form-group">
+            <button class="form-control business-inputs btn btn-info" type="submit"> Register Business</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

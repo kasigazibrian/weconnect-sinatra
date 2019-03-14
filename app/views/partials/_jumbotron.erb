@@ -1,0 +1,14 @@
+<div class="jumbotron">
+  <%= erb :'partials/_messages'  %>
+  <%#= flash_toastr %>
+  <% if authenticated? %>
+  <h1 class="display-4">Welcome <%= @current_user.first_name.capitalize %> <%= @current_user.last_name.capitalize  %> !!</h1>
+    <% else %>
+    <h1 class="display-4">Welcome !!</h1>
+    <% end %>
+  <p class="lead-paragraph">This is a simple business advertising company. You can register your
+    business with us by simply creating an <a href="/users/sign_up" >account</a></p>
+  <hr class="my-4">
+  <p>You can view registered businesses by simply clicking the button below.</p>
+  <a id="view-registered-businesses" class="btn btn-info" href="#" role="button">View Registered Businesses</a>
+</div>

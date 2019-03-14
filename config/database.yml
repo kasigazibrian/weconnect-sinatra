@@ -1,0 +1,23 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: weconnect_sinatra
+  pool: 2
+  username: postgres
+  password: <%= ENV['password'] %>
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: production_db
+  pool: 2
+  username: postgres
+  password: <%= ENV['password'] %>
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: test_db
+  pool: 2
+  username: postgres
+  password: <%= ENV['password'] %>

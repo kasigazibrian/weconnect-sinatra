@@ -1,0 +1,59 @@
+.login-wrapping {
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 5%;
+    padding-top: 30px;
+    max-width: 450px;
+    min-height: 420px;
+    position: relative;
+    background-color: #343a40;
+    border-radius: 5%;
+    box-shadow: 0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+}
+
+.sign-up-wrapping {
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-top: 30px;
+    border-radius: 1.25rem;
+    padding-bottom: 30px;
+    max-width: 450px;
+    min-height: 700px;
+    position: relative;
+    background-color: #343a40;
+    box-shadow: 0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+}
+
+.login-heading{
+    font-size: 28px;
+    color: #fdfdfe;
+
+}
+
+.form-input-border{
+    border-radius: 20px !important;
+    width: 100% !important;
+}
+
+
+.sign-up-heading{
+    font-size: 28px;
+    color: #fdfdfe;
+
+}
+
+.login-background{
+    background-image: url("../images/login-background-image.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.signup-background{
+    background-image: url("../images/ballpen.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 130vh;
+}

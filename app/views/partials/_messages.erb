@@ -1,0 +1,8 @@
+<% flash.keys.each do |type| %>
+    <% flash[type].each do |message| %>
+    <div id="alert-message" class="alert alert-<%= type %>">
+      <a href="#" data-dismiss="alert" class="close">×</a>
+      <%= message %>
+    </div>
+    <% end %>
+<% end %>
