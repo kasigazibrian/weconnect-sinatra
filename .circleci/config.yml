@@ -5,6 +5,7 @@ jobs:
       - image: circleci/ruby:2.6.1-node
       - image: circleci/postgres:10-alpine-postgis
         environment:
+          RACK_ENV: test
           BUNDLER_VERSION: 2.0.1
           POSTGRES_USER: postgres
           POSTGRES_DB: test_db
