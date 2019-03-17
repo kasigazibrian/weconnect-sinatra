@@ -1,3 +1,6 @@
+require 'sidekiq'
+require_relative '../../workers/send_sign_up_email'
+
 class UsersController < ApplicationController
   ['/users/log_in'].each do |path|
     before path do
@@ -19,6 +22,7 @@ class UsersController < ApplicationController
     user = User.new(params)
     if user.save
       flash[:success] = ['You have been registered successfully']
+      SendSignUpEmail.perform_async(user.id)
       redirect '/'
     else
       status 400
@@ -33,6 +37,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect "/users/#{@user.id}/user_profile"
     else
+      status 400
       flash[:danger] = ['Invalid username or password']
       erb :'users/login'
     end

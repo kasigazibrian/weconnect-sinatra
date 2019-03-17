@@ -6,6 +6,7 @@ require_relative '../helpers/authentication_helper'
 # Base controller for the sinatra application
 class ApplicationController < Sinatra::Base
   enable :sessions
+  use RackSessionAccess::Middleware if environment == :test
   use Rack::Flash, sweep: true
   helpers Sinatra::AuthenticationHelper
   # configure :production, :development do
