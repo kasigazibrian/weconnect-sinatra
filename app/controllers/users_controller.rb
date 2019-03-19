@@ -1,4 +1,4 @@
-require 'sidekiq'
+require 'shoryuken'
 require_relative '../../workers/send_sign_up_email'
 
 class UsersController < ApplicationController

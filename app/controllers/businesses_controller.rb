@@ -1,3 +1,5 @@
+require 'sinatra/contrib'
+
 class BusinessesController < ApplicationController
   %w[/users/register_business
      /businesses/:business_id/profile
@@ -7,6 +9,13 @@ class BusinessesController < ApplicationController
       login_required!
       @categories = Category.all
       # next unless request.post?
+    end
+  end
+
+  %w[/businesses /businesses/search].each do |path|
+    before path do
+      @categories = Category.all
+      @locations = Business.all.map(&:business_location)
     end
   end
 
@@ -78,5 +87,16 @@ class BusinessesController < ApplicationController
       flash[:danger] = @business.errors.full_messages
       halt status 400
     end
+  end
+
+  get '/businesses/search' do
+    erb :'businesses/search'
+  end
+
+  get '/businesses_search' do
+    @businesses = Business.filter(
+      params.slice(:has_name, :belongs_to_category, :in_location)
+    )
+    json @businesses
   end
 end

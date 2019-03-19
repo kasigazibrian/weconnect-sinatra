@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'activerecord', require: 'active_record'
+gem 'aws-sdk-sqs'
 gem 'bcrypt'
 gem 'pg'
 gem 'pony'
@@ -8,11 +9,13 @@ gem 'pry'
 gem 'rack-flash3'
 gem 'rake'
 gem 'require_all', '~> 1.5.0'
+gem 'searchkick'
+gem 'shoryuken'
 gem 'shotgun'
-gem 'sidekiq'
 gem 'simplecov'
-gem 'sinatra'
+gem 'sinatra', require: 'sinatra/base'
 gem 'sinatra-activerecord', require: 'sinatra/activerecord'
+gem 'sinatra-contrib'
 gem 'sinatra-static-assets'
 
 group :test, :development do

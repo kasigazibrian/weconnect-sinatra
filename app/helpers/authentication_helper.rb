@@ -8,6 +8,7 @@ module Sinatra
     end
 
     def login_required!
+      flash[:warning] = ['Login to access the resource'] unless authenticated?
       redirect('/users/sign_in') unless authenticated?
     end
 
