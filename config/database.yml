@@ -7,7 +7,7 @@ development:
   password: <%= ENV['password'] %>
 
 production:
-  url: ENV['DATABASE_URL']
+  uri: ENV['DATABASE_URL']
 
 test:
   adapter: postgresql
