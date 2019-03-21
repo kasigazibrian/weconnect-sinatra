@@ -3,7 +3,7 @@ require_relative '../spec_helper.rb'
 RSpec.describe BusinessesController do
   describe 'get ' do
     let!(:user) { create :user }
-    let!(:business) { create :business }
+    let!(:business) { create :business, business_name: 'Cool_business' }
 
     context 'logged in user' do
       it 'should access the business catalog page' do
@@ -32,6 +32,22 @@ RSpec.describe BusinessesController do
             'rack.session' => { user_id: user.id }
 
         expect(last_response).to be_ok
+      end
+
+      it 'should access the business search template' do
+        get '/businesses/search' do
+          expect(last_response).to be_ok
+          expect(last_response.body).to include('Search Businesses')
+        end
+      end
+
+      it 'should return the businesses during search' do
+        get '/businesses_search?has_name=Cool_business' do
+          expect(last_response).to be_ok
+          JSON.parse(last_response.body)
+          expect(JSON.parse(last_response.body)[0]['business_name'])
+            .to eq(business.business_name)
+        end
       end
     end
 

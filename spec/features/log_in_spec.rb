@@ -19,6 +19,14 @@ RSpec.describe 'The login process', type: :feature, js: true do
       expect(page).to have_content(/User Profile/)
       expect(page).to have_content('Logged in successfully')
     end
+
+    it 'fails to login a user with invalid credentials' do
+      fill_in 'username', with: 'wrong username'
+      fill_in 'password', with: 'wrong password'
+      click_button 'Log In'
+      sleep 1
+      expect(page).to have_content('Invalid username or password')
+    end
   end
 
   describe 'logs out a user' do

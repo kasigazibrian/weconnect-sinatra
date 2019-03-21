@@ -23,5 +23,23 @@ RSpec.describe 'The sign up process', type: :feature, js: true do
       expect(page).to have_content(/Welcome !!/)
       expect(page).to have_content('You have been registered successfully')
     end
+
+    it 'fails to sign up a user with invalid information' do
+      fill_in 'username', with: 'Brian'
+      fill_in 'email', with: 'brian.com'
+      fill_in 'first_name', with: 'brian'
+      fill_in 'last_name', with: 'Moses'
+      choose('male')
+      fill_in 'password', with: 'mango12345'
+      fill_in 'password_confirmation', with: ''
+      click_button 'Sign Up'
+      sleep 1
+      expect(page).to have_content(
+        "Password confirmation doesn't match Password"
+      )
+      expect(page).to have_content(
+        'Email should be a valid Andela email address'
+      )
+    end
   end
 end

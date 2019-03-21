@@ -1,24 +1,34 @@
 require_relative '../spec_helper'
+# require 'shoryuken'
 
 RSpec.describe SendSignUpEmail do
   let!(:user) { create :user }
 
-  it 'queues the jobs' do
-    expect do
-      SendSignUpEmail.perform_async(user.id)
-    end.to change(SendSignUpEmail.jobs, :size).by(1)
+  let(:sqs_msg) do
+    double message_id: 'fc754df7-9cc2-4c41-96ca-5996a44b771e',
+           body: 'test',
+           delete: nil
   end
 
-  it 'fails to perform the job with incorrect user_id' do
-    SendSignUpEmail.perform_async('fake_id')
-    SendSignUpEmail.drain
-    expect(SendSignUpEmail.jobs.size).to eq(0)
-  end
+  let(:body) { 'test' }
+  describe '#perform' do
+    subject { SendSignUpEmail.new }
 
-  it 'performs task' do
-    Sidekiq::Testing.inline!
-    allow(SendEmail).to receive(:send_mail)
-    SendSignUpEmail.perform_async(user.id)
-    expect(SendEmail).to have_received(:send_mail)
+    before :each do
+      allow(SendSignUpEmail).to receive(:perform_async) do |sqs_msg, body|
+        subject.perform(sqs_msg, body)
+      end
+    end
+
+    it 'prints the body message when job fails' do
+      expect { subject.perform(sqs_msg, body) }
+        .to output("Job failed\n").to_stdout
+    end
+
+    it 'performs the send email task' do
+      allow(SendEmail).to receive(:send_mail)
+      expect { subject.perform(sqs_msg, user.id) }
+        .to output("Sending email\n").to_stdout
+    end
   end
 end

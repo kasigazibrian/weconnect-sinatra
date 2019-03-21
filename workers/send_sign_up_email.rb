@@ -12,7 +12,7 @@ class SendSignUpEmail
   def perform(_sqs_msg, user_id)
     user = User.find_by(id: user_id)
     if user
-      puts 'Sending email '
+      puts 'Sending email'
       SendEmail.send_mail(user)
     else
       puts 'Job failed'

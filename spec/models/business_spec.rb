@@ -2,12 +2,23 @@ require_relative '../spec_helper.rb'
 
 RSpec.describe Business, type: :model do
   let!(:business) { create :business }
+  let!(:filter_params) do
+    { has_name: business.business_name,
+      in_location: business.business_location }
+  end
 
   describe 'model' do
     context 'associations' do
       it { should belong_to(:user) }
       it { should have_many(:reviews) }
       it { should belong_to(:category) }
+    end
+
+    context 'filters' do
+      it 'should filter businesses with filter params' do
+        expect(described_class.filter(filter_params))
+          .to eq([business])
+      end
     end
 
     context 'presence validation' do
