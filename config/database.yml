@@ -7,12 +7,7 @@ development:
   password: <%= ENV['password'] %>
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: production_db
-  pool: 40
-  username: postgres
-  password: <%= ENV['password'] %>
+  url: ENV['DATABASE_URL']
 
 test:
   adapter: postgresql
