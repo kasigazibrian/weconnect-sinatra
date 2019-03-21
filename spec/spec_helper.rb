@@ -159,6 +159,10 @@ RSpec.configure do |config|
   #   Kernel.srand config.seed
 end
 
+Capybara.configure do |config|
+  config.default_max_wait_time = 10
+end
+
 Capybara.app = Rack::Builder.parse_file(
   File.expand_path('../config.ru', __dir__)
 ).first
@@ -169,3 +173,4 @@ Capybara.register_driver :selenium_chrome do |app|
 end
 
 Capybara.javascript_driver = :selenium_chrome
+

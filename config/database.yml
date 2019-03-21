@@ -1,7 +1,6 @@
 development:
   adapter: postgresql
   encoding: unicode
-  timeout: 10000
   database: weconnect_sinatra
   pool: 40
   username: postgres
@@ -14,7 +13,6 @@ test:
   adapter: postgresql
   encoding: unicode
   database: test_db
-  timeout: 10000
   pool: 40
   username: postgres
   password: <%= ENV['password'] %>
