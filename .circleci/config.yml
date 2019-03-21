@@ -1,6 +1,8 @@
 version: 2
 jobs:
   build:
+    environment:
+      CC_TEST_REPORTER_ID: a7504ac52a06d80bb525ed36dbd185f137a7cfe985cfb4dfde52847d546ddebd
     docker:
       - image: circleci/ruby:2.6.1-node-browsers
         environment:
@@ -49,6 +51,11 @@ jobs:
               --format progress \
               --format progress \
               $TEST_FILES
+      - run:
+          name: Upload coverage results to Code Climate
+          command: |
+            ./tmp/cc-test-reporter sum-coverage tmp/codeclimate.*.json -p 2 -o tmp/codeclimate.total.json
+            ./tmp/cc-test-reporter upload-coverage -i tmp/codeclimate.total.json
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
