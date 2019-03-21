@@ -13,6 +13,7 @@ RSpec.describe 'The sign up process', type: :feature, js: true do
     end
     it 'signs up a user' do
       allow(SendSignUpEmail).to receive(:perform_async)
+      allow(SendEmail).to receive(:send_mail)
       fill_in 'username', with: 'Brian'
       fill_in 'email', with: 'brian@andela.com'
       fill_in 'first_name', with: 'brian'
