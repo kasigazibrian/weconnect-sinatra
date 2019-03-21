@@ -7,5 +7,3 @@ delay: 25,
 timeout: 8
 queues:
   - [send_email, 6]
-  - [default, 2]
-  - [low_priority, 1]
