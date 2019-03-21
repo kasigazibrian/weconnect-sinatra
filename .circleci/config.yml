@@ -5,12 +5,14 @@ jobs:
       - image: circleci/ruby:2.6.1-node-browsers
         environment:
           RACK_ENV: test
+          secret: mysecret
           BUNDLER_VERSION: 2.0.1
           DATABASE_URL: postgresql://postgres@localhost/test_db
       - image: postgres:9.6
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: test_db
+          password: ''
 
     working_directory: ~/repo
     steps:
@@ -30,10 +32,6 @@ jobs:
           name: install dependencies
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
-      - run:
-          name: "Setup environment variables"
-          command: |
-            echo 'export secret="mysecret"'
       - save_cache:
           paths:
             - ./vendor/bundle
